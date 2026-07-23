@@ -1,14 +1,47 @@
 "use client";
 
+import { useEffect, useRef, useState } from "react";
+import Brand from "./Brand";
+
 const LINKS = [
-  { label: "Projects", href: "#projects", active: true },
-  { label: "Skills", href: "#skills" },
-  { label: "Experience", href: "#experience" },
-  { label: "About", href: "#about" },
-  { label: "Contact", href: "#contact" },
+  { label: "Home", href: "#hero", id: "hero" },
+  { label: "Projects", href: "#projects", id: "projects" },
+  { label: "Skills", href: "#skills", id: "skills" },
+  { label: "Experience", href: "#experience", id: "experience" },
+  { label: "About", href: "#about", id: "about" },
+  { label: "Contact", href: "#contact", id: "contact" },
 ];
 
+// Section order as they appear in the document (for topmost-wins tie-breaking).
+const DOC_ORDER = ["hero", "projects", "about", "skills", "experience", "contact"];
+
 export default function Navbar() {
+  const [active, setActive] = useState("hero");
+  const visibility = useRef<Record<string, boolean>>({});
+
+  useEffect(() => {
+    const sections = DOC_ORDER.map((id) => document.getElementById(id)).filter(
+      (el): el is HTMLElement => el !== null
+    );
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          visibility.current[entry.target.id] = entry.isIntersecting;
+        });
+        // Highlight the first (topmost) section currently crossing the band.
+        const current = DOC_ORDER.find((id) => visibility.current[id]);
+        if (current) setActive(current);
+      },
+      // A thin band around the vertical middle of the viewport — whichever
+      // section crosses the middle is "active".
+      { rootMargin: "-45% 0px -45% 0px", threshold: 0 }
+    );
+
+    sections.forEach((section) => observer.observe(section));
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <nav
       id="top-nav"
@@ -16,10 +49,10 @@ export default function Navbar() {
     >
       <div className="flex justify-between items-center max-w-container-max mx-auto px-gutter py-4">
         <a
-          href="#"
-          className="text-headline-lg font-headline-lg text-primary hover:animate-bounce cursor-pointer spring-snappy interactive-el"
+          href="#hero"
+          className="text-headline-lg font-headline-lg hover:animate-bounce cursor-pointer spring-snappy interactive-el"
         >
-          MERN.DEV
+          <Brand />
         </a>
 
         <div className="hidden md:flex items-center gap-8">
@@ -27,8 +60,9 @@ export default function Navbar() {
             <a
               key={link.href}
               href={link.href}
+              aria-current={active === link.id ? "page" : undefined}
               className={
-                link.active
+                active === link.id
                   ? "text-primary font-bold border-b-2 border-primary pb-1 font-label-bold text-label-bold hover:scale-105 hover:bg-white/5 transition-all duration-300 spring-snappy interactive-el"
                   : "text-on-surface-variant font-medium hover:text-primary font-label-bold text-label-bold hover:scale-105 hover:bg-white/5 transition-all duration-300 spring-snappy interactive-el"
               }
