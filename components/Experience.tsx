@@ -20,15 +20,14 @@ type Experience = {
 
 const EXPERIENCES: Experience[] = [
   {
-    period: "2022 - Present",
+    period: "Mar 2023 - Present",
     current: true,
-    company: "TechNova",
-    companyClass:
-      "text-on-surface-variant bg-surface-container/50",
-    title: "Senior Full-Stack Developer",
+    company: "Alpha OBS LLP",
+    companyClass: "text-primary bg-primary/10",
+    title: "MERN Stack Developer",
     description:
-      "Leading a cross-functional team to engineer robust, high-availability SaaS platforms. Architected scalable microservices using Node.js and delivered seamless, highly interactive user experiences with modern React. Driven significant performance improvements across the stack.",
-    tags: ["React", "Node.js", "System Design"],
+      "Promoted to build and own full-stack features across the MERN stack — designing MongoDB data models, Express and Node.js APIs, and dynamic React front-ends for production web applications.",
+    tags: ["React", "Node.js", "Express", "MongoDB"],
     image: "/images/exp-1.jpg",
     imageAlt:
       "Abstract dark tech environment with glowing purple geometric data structures.",
@@ -41,13 +40,13 @@ const EXPERIENCES: Experience[] = [
     },
   },
   {
-    period: "2020 - 2022",
-    company: "WebFlow Studios",
-    companyClass: "text-primary bg-primary/10",
-    title: "MERN Developer",
+    period: "Oct 2021 - Mar 2023",
+    company: "Alpha OBS LLP",
+    companyClass: "text-on-surface-variant bg-surface-container/50",
+    title: "React JS Developer",
     description:
-      "Specialized in translating complex design prototypes into pixel-perfect, highly interactive React applications. Championed MongoDB schema optimizations that reduced query times by 40%. Collaborated closely with design teams to ensure tactile UI/UX implementations.",
-    tags: ["MongoDB", "UI/UX", "Express"],
+      "Developed dynamic, component-driven user interfaces in React, turning designs into responsive, high-performance web applications and reusable UI components.",
+    tags: ["React", "JavaScript", "REST APIs"],
     image: "/images/exp-2.jpg",
     imageAlt:
       "Macro 3D render of a stylized database cluster with glowing cyan and purple energy flows.",
@@ -56,18 +55,34 @@ const EXPERIENCES: Experience[] = [
       size: "w-3 h-3",
       color: "bg-surface-variant",
       glow: "",
+      outerGlow: "shadow-[0_0_20px_rgba(221,183,255,0.15)]",
+    },
+  },
+  {
+    period: "Sep 2020 - Oct 2021",
+    company: "leadsbee.org",
+    companyClass: "text-on-surface-variant bg-surface-container/50",
+    title: "Web Developer (Contract)",
+    description:
+      "Built and maintained responsive client websites and custom WordPress solutions, and began crafting interactive front-ends with React.",
+    tags: ["React", "JavaScript", "WordPress"],
+    cardSide: "left",
+    dot: {
+      size: "w-3 h-3",
+      color: "bg-surface-variant",
+      glow: "",
       outerGlow: "shadow-[0_0_20px_rgba(221,183,255,0.1)]",
     },
   },
   {
-    period: "2018 - 2020",
-    company: "StartUp Inc",
+    period: "Jan 2020 - Sep 2020",
+    company: "Freelance",
     companyClass: "text-on-surface bg-surface-container-highest",
-    title: "Junior Developer",
+    title: "Freelance Developer",
     description:
-      "Cut my teeth building responsive web applications from the ground up. Developed and maintained RESTful APIs, integrated third-party services, and ensured cross-browser compatibility. Laid the foundational knowledge for scalable web architecture.",
-    tags: ["REST APIs", "JavaScript", "HTML/CSS"],
-    cardSide: "left",
+      "Started my journey building responsive marketing sites and WordPress themes for clients using HTML, CSS, JavaScript, and Bootstrap.",
+    tags: ["HTML/CSS", "JavaScript", "Bootstrap", "WordPress"],
+    cardSide: "right",
     dot: {
       size: "w-2 h-2",
       color: "bg-outline",
