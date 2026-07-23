@@ -1,8 +1,12 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useState } from "react";
 
-type Status = "idle" | "sending" | "sent";
+type Status = "idle" | "sending" | "sent" | "error";
+
+// Public by design — Web3Forms access keys are meant to live in the frontend.
+// Set NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY in .env.local (see .env.local).
+const ACCESS_KEY = process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY ?? "";
 
 const FIELD_INPUT =
   "peer w-full bg-surface-dim border border-white/10 rounded-lg px-4 pt-6 pb-2 font-body-md text-on-surface focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary focus:bg-surface-container-high transition-all duration-300 placeholder-transparent interactive-el";
@@ -51,29 +55,65 @@ function Field({
 
 export default function ContactForm() {
   const [status, setStatus] = useState<Status>("idle");
-  const formRef = useRef<HTMLFormElement>(null);
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (status !== "idle") return;
+    if (status === "sending") return;
 
-    // Demo only — no backend wired up yet.
+    const form = e.currentTarget; // capture before await (event is pooled)
+    const formData = new FormData(form);
+    formData.append("access_key", ACCESS_KEY);
+    // Nicer inbox subject line.
+    formData.set(
+      "subject",
+      `Portfolio contact: ${formData.get("subject") || "New message"}`
+    );
+
     setStatus("sending");
-    setTimeout(() => {
-      setStatus("sent");
-      formRef.current?.reset();
-      setTimeout(() => setStatus("idle"), 3000);
-    }, 1500);
+    try {
+      const res = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: { Accept: "application/json" },
+        body: formData,
+      });
+      const data = await res.json();
+      if (data.success) {
+        setStatus("sent");
+        form.reset();
+        setTimeout(() => setStatus("idle"), 4000);
+      } else {
+        setStatus("error");
+        setTimeout(() => setStatus("idle"), 4000);
+      }
+    } catch {
+      setStatus("error");
+      setTimeout(() => setStatus("idle"), 4000);
+    }
   };
+
+  const buttonClass =
+    status === "sent"
+      ? "bg-surface-container text-tertiary border border-tertiary/30"
+      : status === "error"
+        ? "bg-surface-container text-error border border-error/30"
+        : "bg-gradient-to-r from-primary to-inverse-primary text-on-primary";
 
   return (
     <form
-      ref={formRef}
       onSubmit={handleSubmit}
       className="glass-panel rounded-xl p-8 md:p-12 relative overflow-hidden group"
     >
       {/* Decorative gradient corner */}
       <div className="absolute -top-24 -right-24 w-48 h-48 rounded-full blur-2xl bg-[radial-gradient(circle,rgba(221,183,255,0.3),transparent_70%)] group-hover:scale-150 transition-transform duration-700 pointer-events-none" />
+
+      {/* Honeypot — hidden from users, catches bots */}
+      <input
+        type="checkbox"
+        name="botcheck"
+        className="hidden"
+        tabIndex={-1}
+        autoComplete="off"
+      />
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
         <Field id="name" label="Full Name" />
@@ -88,12 +128,8 @@ export default function ContactForm() {
 
       <button
         type="submit"
-        disabled={status !== "idle"}
-        className={`squishy-btn w-full relative z-10 font-label-bold text-label-bold py-4 px-8 rounded-lg overflow-hidden flex items-center justify-center gap-2 interactive-el ${
-          status === "sent"
-            ? "bg-surface-container text-tertiary border border-tertiary/30"
-            : "bg-gradient-to-r from-primary to-inverse-primary text-on-primary"
-        }`}
+        disabled={status === "sending"}
+        className={`squishy-btn w-full relative z-10 font-label-bold text-label-bold py-4 px-8 rounded-lg overflow-hidden flex items-center justify-center gap-2 interactive-el disabled:opacity-80 ${buttonClass}`}
       >
         {status === "idle" && (
           <>
@@ -110,7 +146,13 @@ export default function ContactForm() {
         {status === "sent" && (
           <>
             <span className="material-symbols-outlined">check_circle</span>
-            <span>Sent!</span>
+            <span>Sent! I&apos;ll be in touch.</span>
+          </>
+        )}
+        {status === "error" && (
+          <>
+            <span className="material-symbols-outlined">error</span>
+            <span>Something went wrong — try again</span>
           </>
         )}
       </button>
