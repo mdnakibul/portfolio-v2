@@ -108,3 +108,29 @@
   -webkit-text-fill-color: transparent;
   color: transparent;
 }
+
+/* --- Case-study glass card (lighter fill than .glass-panel) --- */
+.glass-card {
+  background: rgba(11, 19, 38, 0.12);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* --- Primary gradient fill (buttons, accents) --- */
+.primary-gradient {
+  background: linear-gradient(135deg, #b76dff 0%, #842bd2 100%);
+}
+
+/* --- Squishy button: grows on hover, presses + brightens on tap --- */
+.squishy-btn {
+  transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275),
+    filter 0.2s ease;
+}
+.squishy-btn:hover {
+  transform: scale(1.05);
+}
+.squishy-btn:active {
+  transform: scale(0.96);
+  filter: brightness(1.2);
+}
