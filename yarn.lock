@@ -950,6 +950,26 @@ __metadata:
   languageName: node
   linkType: hard
 
+"nakibul-portfolio-v2@workspace:.":
+  version: 0.0.0-use.local
+  resolution: "nakibul-portfolio-v2@workspace:."
+  dependencies:
+    "@types/node": "npm:^20.17.0"
+    "@types/react": "npm:^19.0.0"
+    "@types/react-dom": "npm:^19.0.0"
+    "@types/three": "npm:^0.172.0"
+    autoprefixer: "npm:^10.4.20"
+    framer-motion: "npm:^11.15.0"
+    next: "npm:^15.1.6"
+    postcss: "npm:^8.5.1"
+    react: "npm:^19.0.0"
+    react-dom: "npm:^19.0.0"
+    tailwindcss: "npm:^3.4.17"
+    three: "npm:^0.172.0"
+    typescript: "npm:^5.7.3"
+  languageName: unknown
+  linkType: soft
+
 "nanoid@npm:^3.3.16, nanoid@npm:^3.3.6":
   version: 3.3.16
   resolution: "nanoid@npm:3.3.16"
@@ -1118,26 +1138,6 @@ __metadata:
   checksum: 10c0/a51f108dd811beb779d58a76864bbd49e239fa40c7984cd11596c75a121a8cc789f1c8971d8bb15f0dbf9d48b76c05bb62fcbce840f89b688c0fa64b37e8478a
   languageName: node
   linkType: hard
-
-"portfoliov2@workspace:.":
-  version: 0.0.0-use.local
-  resolution: "portfoliov2@workspace:."
-  dependencies:
-    "@types/node": "npm:^20.17.0"
-    "@types/react": "npm:^19.0.0"
-    "@types/react-dom": "npm:^19.0.0"
-    "@types/three": "npm:^0.172.0"
-    autoprefixer: "npm:^10.4.20"
-    framer-motion: "npm:^11.15.0"
-    next: "npm:^15.1.6"
-    postcss: "npm:^8.5.1"
-    react: "npm:^19.0.0"
-    react-dom: "npm:^19.0.0"
-    tailwindcss: "npm:^3.4.17"
-    three: "npm:^0.172.0"
-    typescript: "npm:^5.7.3"
-  languageName: unknown
-  linkType: soft
 
 "postcss-import@npm:^15.1.0":
   version: 15.1.0
