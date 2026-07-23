@@ -5,6 +5,7 @@ import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import About from "@/components/About";
 import Skills from "@/components/Skills";
+import Experience from "@/components/Experience";
 import Footer from "@/components/Footer";
 
 export default function Home() {
@@ -31,6 +32,7 @@ export default function Home() {
         <div className="max-w-container-max mx-auto w-full px-margin-mobile md:px-gutter space-y-[128px] pb-32 relative z-10">
           <About />
           <Skills />
+          <Experience />
         </div>
       </main>
 
