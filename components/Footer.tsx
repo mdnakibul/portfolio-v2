@@ -1,10 +1,11 @@
 import Brand from "./Brand";
+import { SOCIALS, mailto } from "@/lib/socials";
 
-const SOCIALS = [
-  { label: "GitHub", href: "#" },
-  { label: "LinkedIn", href: "#" },
-  { label: "Twitter", href: "#" },
-  { label: "Email", href: "#" },
+const LINKS = [
+  { label: "GitHub", href: SOCIALS.github },
+  { label: "LinkedIn", href: SOCIALS.linkedin },
+  { label: "Twitter", href: SOCIALS.twitter },
+  { label: "Email", href: mailto },
 ];
 
 export default function Footer() {
@@ -15,15 +16,21 @@ export default function Footer() {
           <Brand />
         </div>
         <div className="flex gap-6">
-          {SOCIALS.map((s) => (
-            <a
-              key={s.label}
-              href={s.href}
-              className="text-on-surface-variant hover:text-primary transition-all font-label-bold text-label-bold hover:rotate-12 hover:scale-110 duration-300 interactive-el"
-            >
-              {s.label}
-            </a>
-          ))}
+          {LINKS.map((s) => {
+            const external = s.href.startsWith("http");
+            return (
+              <a
+                key={s.label}
+                href={s.href}
+                {...(external
+                  ? { target: "_blank", rel: "noreferrer noopener" }
+                  : {})}
+                className="text-on-surface-variant hover:text-primary transition-all font-label-bold text-label-bold hover:rotate-12 hover:scale-110 duration-300 interactive-el"
+              >
+                {s.label}
+              </a>
+            );
+          })}
         </div>
         <div className="font-body-md text-body-md text-tertiary">
           © 2026 Nakibul Hosen. Built with tactile precision.

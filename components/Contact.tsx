@@ -1,5 +1,6 @@
 import Reveal from "./Reveal";
 import ContactForm from "./ContactForm";
+import { SOCIALS, mailto } from "@/lib/socials";
 
 export default function Contact() {
   return (
@@ -37,7 +38,9 @@ export default function Contact() {
 
           <div className="flex gap-6">
             <a
-              href="#"
+              href={SOCIALS.github}
+              target="_blank"
+              rel="noreferrer noopener"
               aria-label="GitHub"
               className="w-12 h-12 rounded-full bg-surface-container flex items-center justify-center border border-white/5 text-on-surface-variant hover:text-primary hover:border-primary/50 hover:bg-primary/10 transition-all duration-300 hover:-translate-y-1 hover:rotate-12 interactive-el"
             >
@@ -46,7 +49,9 @@ export default function Contact() {
               </svg>
             </a>
             <a
-              href="#"
+              href={SOCIALS.linkedin}
+              target="_blank"
+              rel="noreferrer noopener"
               aria-label="LinkedIn"
               className="w-12 h-12 rounded-full bg-surface-container flex items-center justify-center border border-white/5 text-on-surface-variant hover:text-secondary hover:border-secondary/50 hover:bg-secondary/10 transition-all duration-300 hover:-translate-y-1 hover:-rotate-12 interactive-el"
             >
@@ -55,7 +60,18 @@ export default function Contact() {
               </svg>
             </a>
             <a
-              href="#"
+              href={SOCIALS.twitter}
+              target="_blank"
+              rel="noreferrer noopener"
+              aria-label="X (Twitter)"
+              className="w-12 h-12 rounded-full bg-surface-container flex items-center justify-center border border-white/5 text-on-surface-variant hover:text-on-surface hover:border-white/40 hover:bg-white/10 transition-all duration-300 hover:-translate-y-1 hover:rotate-12 interactive-el"
+            >
+              <svg className="w-5 h-5 fill-current" viewBox="0 0 24 24">
+                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+              </svg>
+            </a>
+            <a
+              href={mailto}
               aria-label="Email"
               className="w-12 h-12 rounded-full bg-surface-container flex items-center justify-center border border-white/5 text-on-surface-variant hover:text-tertiary hover:border-tertiary/50 hover:bg-tertiary/10 transition-all duration-300 hover:-translate-y-1 hover:rotate-12 interactive-el"
             >
