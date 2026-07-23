@@ -24,7 +24,10 @@ const revealUp: Variants = {
 
 export default function Hero() {
   return (
-    <main className="flex-grow flex items-center justify-center relative z-10 pt-32 pb-24 px-gutter min-h-screen">
+    <section
+      id="hero"
+      className="flex-grow flex items-center justify-center relative z-10 pt-32 pb-24 px-gutter min-h-screen"
+    >
       <div className="max-w-container-max mx-auto w-full flex flex-col items-center text-center">
         <motion.div
           variants={container}
@@ -104,6 +107,6 @@ export default function Hero() {
           <div className="w-[1px] h-12 bg-gradient-to-b from-primary to-transparent animate-pulse" />
         </motion.div>
       </div>
-    </main>
+    </section>
   );
 }

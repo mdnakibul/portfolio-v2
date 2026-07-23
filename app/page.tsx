@@ -3,6 +3,9 @@ import ShaderBackground from "@/components/ShaderBackground";
 import ThreeScene from "@/components/ThreeScene";
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
+import About from "@/components/About";
+import Skills from "@/components/Skills";
+import Footer from "@/components/Footer";
 
 export default function Home() {
   return (
@@ -20,7 +23,18 @@ export default function Home() {
       </div>
 
       <Navbar />
-      <Hero />
+
+      <main className="flex-grow flex flex-col">
+        <Hero />
+
+        {/* About + Skills */}
+        <div className="max-w-container-max mx-auto w-full px-margin-mobile md:px-gutter space-y-[128px] pb-32 relative z-10">
+          <About />
+          <Skills />
+        </div>
+      </main>
+
+      <Footer />
     </>
   );
 }
