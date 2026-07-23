@@ -25,6 +25,36 @@ const SKILLS = [
     blurb:
       "Event-driven backend execution for real-time, scalable network applications.",
   },
+  {
+    name: "MySQL",
+    icon: "table_chart",
+    blurb:
+      "Relational schema design, complex joins, and query optimization for transactional integrity.",
+  },
+  {
+    name: "GraphQL",
+    icon: "hub",
+    blurb:
+      "Typed schemas and precise, over-fetch-free data loading for efficient client-server contracts.",
+  },
+  {
+    name: "Next.js",
+    icon: "web",
+    blurb:
+      "Server-side rendering, the App Router, and edge-ready React for fast, SEO-friendly experiences.",
+  },
+  {
+    name: "Linux",
+    icon: "terminal",
+    blurb:
+      "At home on the command line — server administration, shell scripting, and deployment workflows.",
+  },
+  {
+    name: "AWS",
+    icon: "cloud",
+    blurb:
+      "Cloud infrastructure and deployment — EC2, S3, and scalable hosting for production workloads.",
+  },
 ];
 
 export default function Skills() {
@@ -40,11 +70,11 @@ export default function Skills() {
         </p>
       </Reveal>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {SKILLS.map((skill, i) => (
           <Reveal
             key={skill.name}
-            delay={0.15 + i * 0.1}
+            delay={i * 0.06}
             className="glass-panel rounded-lg p-6 tactile-card group interactive-el"
           >
             <div className="w-12 h-12 rounded-full bg-primary-container/20 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
