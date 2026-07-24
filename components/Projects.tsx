@@ -14,6 +14,11 @@ const PERSONAL = {
   liveLabel: "Visit Site",
   // Commercial product — source is kept private (no public repo).
   repoUrl: "",
+  // Add a screenshot at /public/images/ and set the path here (e.g.
+  // "/images/vetvertex.png"). Leave "" to show the gradient placeholder.
+  image: "/images/vetvertex.png",
+  imageAlt:
+    "VetVertex — appointment and patient management dashboard for veterinary clinics.",
 };
 
 // Professional / company work. Specifics are intentionally generalized to
@@ -91,11 +96,26 @@ export default function Projects() {
 
       <Reveal className="mb-24">
         <TiltCard className="glass-card rounded-xl overflow-hidden flex flex-col md:flex-row group interactive-el transition-shadow duration-500 hover:shadow-[0_20px_40px_rgba(183,109,255,0.2)]">
-          {/* Cover — replace with a real screenshot at /public/images/ */}
-          <div className="md:w-1/2 h-64 md:h-auto relative overflow-hidden flex items-center justify-center primary-gradient">
-            <span className="material-symbols-outlined text-white/90 text-[80px] group-hover:scale-110 transition-transform duration-500">
-              code_blocks
-            </span>
+          {/* Cover — shows a screenshot when PERSONAL.image is set, else a
+              gradient placeholder. Drop an image in /public/images/. */}
+          <div className="md:w-1/2 h-64 md:h-auto relative overflow-hidden">
+            {PERSONAL.image ? (
+              <>
+                <div className="absolute inset-0 bg-primary/20 mix-blend-overlay z-10 group-hover:opacity-0 transition-opacity duration-500" />
+                <img
+                  src={PERSONAL.image}
+                  alt={PERSONAL.imageAlt}
+                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ease-out"
+                  style={{ objectFit: "fill" }}
+                />
+              </>
+            ) : (
+              <div className="absolute inset-0 flex items-center justify-center primary-gradient">
+                <span className="material-symbols-outlined text-white/90 text-[80px] group-hover:scale-110 transition-transform duration-500">
+                  code_blocks
+                </span>
+              </div>
+            )}
           </div>
           <div className="p-8 md:w-1/2 flex flex-col justify-center">
             <div className="flex items-center gap-2 mb-4">
