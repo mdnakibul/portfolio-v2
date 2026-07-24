@@ -1,5 +1,6 @@
 import Reveal from "./Reveal";
 import TiltCard from "./TiltCard";
+import CaseStudyGrid from "./CaseStudyGrid";
 
 // ─────────────────────────────────────────────────────────────────────────
 // Personal project — fully owned, open work. REPLACE the placeholder values
@@ -20,42 +21,6 @@ const PERSONAL = {
   imageAlt:
     "VetVertex — appointment and patient management dashboard for veterinary clinics.",
 };
-
-// Professional / company work. Specifics are intentionally generalized to
-// respect confidentiality — that's why these have no public repo links.
-const CASE_STUDIES = [
-  {
-    title: "E-commerce Scale-up",
-    live: true,
-    description:
-      "Architected a highly scalable MERN stack solution to handle 10x traffic spikes during holiday sales. Focused heavily on MongoDB indexing strategies and resilient Stripe webhook integration for flawless checkout flows.",
-    tags: ["MongoDB", "Express", "React", "Node.js", "Stripe API"],
-    image: "/images/cs-1.jpg",
-    imageAlt:
-      "Futuristic e-commerce analytics dashboard with neon purple and cyan graphs.",
-    overlay: "bg-primary/20",
-  },
-  {
-    title: "Real-time Analytics Engine",
-    description:
-      "Engineered a low-latency dashboard using Socket.io and React to process and visualize thousands of concurrent events per second without dropping frames.",
-    tags: ["Socket.io", "React", "Node.js"],
-    image: "/images/cs-2.jpg",
-    imageAlt:
-      "Dark-themed real-time analytics interface with glowing neon charts and data streams.",
-    overlay: "bg-secondary-container/20",
-  },
-  {
-    title: "DevOps Automation Suite",
-    description:
-      "Streamlined deployment pipelines across 15 microservices using Node.js scripting, Docker, and GitHub Actions, reducing deployment time by 70%.",
-    tags: ["Docker", "GitHub Actions", "Node.js"],
-    image: "/images/cs-3.jpg",
-    imageAlt:
-      "Conceptual DevOps pipeline with glowing interconnected nodes in purple and green.",
-    overlay: "bg-tertiary-container/20",
-  },
-];
 
 function Tag({ children }: { children: React.ReactNode }) {
   return (
@@ -193,58 +158,7 @@ export default function Projects() {
         </p>
       </Reveal>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-        {CASE_STUDIES.map((cs, i) => (
-          <Reveal key={cs.title} delay={i * 0.12} className="h-full">
-            <TiltCard className="glass-card rounded-xl overflow-hidden flex flex-col h-full group interactive-el transition-shadow duration-500 hover:shadow-[0_20px_40px_rgba(183,109,255,0.2)]">
-              <div className="h-44 relative overflow-hidden">
-                <div
-                  className={`absolute inset-0 ${cs.overlay} mix-blend-overlay z-10 group-hover:opacity-0 transition-opacity duration-500`}
-                />
-                <img
-                  src={cs.image}
-                  alt={cs.imageAlt}
-                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ease-out"
-                />
-                {cs.live && (
-                  <div className="absolute top-3 left-3 z-20 inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-black/40 backdrop-blur-sm">
-                    <span className="w-1.5 h-1.5 rounded-full bg-tertiary shadow-[0_0_8px_#4ae176]" />
-                    <span className="font-label-bold text-[10px] text-tertiary tracking-wider uppercase">
-                      Live
-                    </span>
-                  </div>
-                )}
-              </div>
-              <div className="p-6 flex flex-col flex-grow">
-                <h4 className="font-headline-lg-mobile text-xl text-on-surface mb-3">
-                  {cs.title}
-                </h4>
-                <p className="text-on-surface-variant font-body-md text-sm mb-4 leading-relaxed flex-grow">
-                  {cs.description}
-                </p>
-                <div className="flex flex-wrap gap-2 mb-4">
-                  {cs.tags.map((tag) => (
-                    <span
-                      key={tag}
-                      className="px-2 py-1 rounded-md bg-white/5 border border-white/10 text-[11px] font-label-bold text-on-surface"
-                    >
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-                <div className="flex items-center gap-2 text-on-surface-variant pt-2 border-t border-white/5">
-                  <span className="material-symbols-outlined text-[16px]">
-                    lock
-                  </span>
-                  <span className="font-label-bold text-[11px] uppercase tracking-wider">
-                    Confidential engagement
-                  </span>
-                </div>
-              </div>
-            </TiltCard>
-          </Reveal>
-        ))}
-      </div>
+      <CaseStudyGrid />
     </section>
   );
 }

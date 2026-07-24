@@ -1,16 +1,19 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { usePathname } from "next/navigation";
 import Brand from "./Brand";
 
+// Home-section links use "/#id" so they also work from sub-pages (e.g. /work),
+// where they navigate home and scroll. "Work" is its own route.
 const LINKS = [
-  { label: "Home", href: "#hero", id: "hero" },
-  { label: "Services", href: "#services", id: "services" },
-  { label: "Work", href: "#projects", id: "projects" },
-  { label: "About", href: "#about", id: "about" },
-  { label: "Skills", href: "#skills", id: "skills" },
-  { label: "Experience", href: "#experience", id: "experience" },
-  { label: "Contact", href: "#contact", id: "contact" },
+  { label: "Home", href: "/#hero", id: "hero" },
+  { label: "Services", href: "/#services", id: "services" },
+  { label: "Work", href: "/work", id: "projects" },
+  { label: "About", href: "/#about", id: "about" },
+  { label: "Skills", href: "/#skills", id: "skills" },
+  { label: "Experience", href: "/#experience", id: "experience" },
+  { label: "Contact", href: "/#contact", id: "contact" },
 ];
 
 // Section order as they appear in the document (for topmost-wins tie-breaking).
@@ -25,11 +28,18 @@ const DOC_ORDER = [
 ];
 
 export default function Navbar() {
+  const pathname = usePathname();
   const [active, setActive] = useState("hero");
   const [open, setOpen] = useState(false);
   const visibility = useRef<Record<string, boolean>>({});
 
   useEffect(() => {
+    // On sub-pages there are no scroll sections — highlight by route instead.
+    if (pathname !== "/") {
+      setActive(pathname.startsWith("/work") ? "projects" : "");
+      return;
+    }
+
     const sections = DOC_ORDER.map((id) => document.getElementById(id)).filter(
       (el): el is HTMLElement => el !== null
     );
@@ -50,7 +60,7 @@ export default function Navbar() {
 
     sections.forEach((section) => observer.observe(section));
     return () => observer.disconnect();
-  }, []);
+  }, [pathname]);
 
   return (
     <nav
@@ -59,7 +69,7 @@ export default function Navbar() {
     >
       <div className="flex justify-between items-center max-w-container-max mx-auto px-gutter py-4">
         <a
-          href="#hero"
+          href="/#hero"
           className="text-headline-lg font-headline-lg hover:animate-bounce cursor-pointer spring-snappy interactive-el"
         >
           <Brand />
