@@ -80,15 +80,6 @@ export default function Navbar() {
             </a>
           ))}
         </div>
-
-        <div className="flex items-center">
-          <button
-            aria-label="Toggle Dark Mode"
-            className="text-primary hover:scale-105 hover:bg-white/5 p-2 rounded-full transition-all duration-300 spring-snappy interactive-el"
-          >
-            <span className="material-symbols-outlined">dark_mode</span>
-          </button>
-        </div>
       </div>
     </nav>
   );
