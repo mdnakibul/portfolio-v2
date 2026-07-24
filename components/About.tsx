@@ -20,10 +20,9 @@ export default function About() {
         className="glass-panel rounded-xl w-full max-w-4xl p-8 md:p-12 text-left flex flex-col md:flex-row gap-8 items-center"
       >
         <div className="w-48 h-48 rounded-full overflow-hidden shrink-0 border-2 border-primary/30 shadow-[0_0_30px_rgba(221,183,255,0.2)]">
-          {/* Swap this for your own photo — /public/images/portrait.jpg */}
           <img
-            src="/images/portrait.jpg"
-            alt="Portrait of the developer at a softly lit, dark-themed studio workspace."
+            src="/images/nahid-portrait.png"
+            alt="Md Nakibul Hosen Nahid, MERN Stack Developer."
             className="w-full h-full object-cover"
           />
         </div>
