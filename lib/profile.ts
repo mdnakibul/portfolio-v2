@@ -1,4 +1,6 @@
 // Central profile content, used by the hero and other sections.
+export const SITE_URL = "https://nakibul-dev.vercel.app";
+
 export const PROFILE = {
   name: "Md Nakibul Hosen Nahid",
   role: "MERN Stack Developer",

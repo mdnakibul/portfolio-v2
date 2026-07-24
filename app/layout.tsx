@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import { Outfit, Plus_Jakarta_Sans } from "next/font/google";
+import { SITE_URL } from "@/lib/profile";
+import JsonLd from "@/components/JsonLd";
 import "./globals.css";
 
 const outfit = Outfit({
@@ -16,7 +18,6 @@ const jakarta = Plus_Jakarta_Sans({
   display: "swap",
 });
 
-const SITE_URL = "https://nakibul-dev.vercel.app";
 const DESCRIPTION =
   "MERN Stack Developer with 6+ years building production web apps & SaaS. Available for full-time roles and freelance projects. Creator of VetVertex.";
 
@@ -68,6 +69,7 @@ export default function RootLayout({
         />
       </head>
       <body className="bg-background text-on-background font-body-md min-h-screen flex flex-col overflow-x-hidden selection:bg-primary/30 selection:text-primary-fixed">
+        <JsonLd />
         {children}
       </body>
     </html>
