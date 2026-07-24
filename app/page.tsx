@@ -3,6 +3,7 @@ import ShaderBackground from "@/components/ShaderBackground";
 import ThreeScene from "@/components/ThreeScene";
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
+import Services from "@/components/Services";
 import Projects from "@/components/Projects";
 import About from "@/components/About";
 import Skills from "@/components/Skills";
@@ -32,6 +33,7 @@ export default function Home() {
 
         {/* About + Skills */}
         <div className="max-w-container-max mx-auto w-full px-margin-mobile md:px-gutter space-y-[128px] pb-32 relative z-10">
+          <Services />
           <Projects />
           <About />
           <Skills />

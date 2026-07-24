@@ -5,15 +5,24 @@ import Brand from "./Brand";
 
 const LINKS = [
   { label: "Home", href: "#hero", id: "hero" },
-  { label: "Projects", href: "#projects", id: "projects" },
+  { label: "Services", href: "#services", id: "services" },
+  { label: "Work", href: "#projects", id: "projects" },
+  { label: "About", href: "#about", id: "about" },
   { label: "Skills", href: "#skills", id: "skills" },
   { label: "Experience", href: "#experience", id: "experience" },
-  { label: "About", href: "#about", id: "about" },
   { label: "Contact", href: "#contact", id: "contact" },
 ];
 
 // Section order as they appear in the document (for topmost-wins tie-breaking).
-const DOC_ORDER = ["hero", "projects", "about", "skills", "experience", "contact"];
+const DOC_ORDER = [
+  "hero",
+  "services",
+  "projects",
+  "about",
+  "skills",
+  "experience",
+  "contact",
+];
 
 export default function Navbar() {
   const [active, setActive] = useState("hero");
@@ -55,7 +64,7 @@ export default function Navbar() {
           <Brand />
         </a>
 
-        <div className="hidden md:flex items-center gap-8">
+        <div className="hidden md:flex items-center gap-5 lg:gap-7">
           {LINKS.map((link) => (
             <a
               key={link.href}

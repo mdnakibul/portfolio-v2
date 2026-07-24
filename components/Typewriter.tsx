@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 
-const PHRASES = [
+const DEFAULT_PHRASES = [
   "I build things.",
   "I break things (then fix them).",
   "I ship MERN apps.",
@@ -12,7 +12,11 @@ const TYPING_DELAY = 100;
 const ERASING_DELAY = 50;
 const NEW_TEXT_DELAY = 2000;
 
-export default function Typewriter() {
+export default function Typewriter({
+  phrases = DEFAULT_PHRASES,
+}: {
+  phrases?: string[];
+}) {
   const [text, setText] = useState("");
   const state = useRef({ phrase: 0, char: 0, deleting: false });
 
@@ -21,7 +25,7 @@ export default function Typewriter() {
 
     const tick = () => {
       const s = state.current;
-      const current = PHRASES[s.phrase];
+      const current = phrases[s.phrase];
 
       if (s.deleting) {
         s.char -= 1;
@@ -38,7 +42,7 @@ export default function Typewriter() {
         s.deleting = true;
       } else if (s.deleting && s.char === 0) {
         s.deleting = false;
-        s.phrase = (s.phrase + 1) % PHRASES.length;
+        s.phrase = (s.phrase + 1) % phrases.length;
         speed = 500;
       }
 
@@ -48,7 +52,7 @@ export default function Typewriter() {
     // Start after the initial reveal settles.
     timer = setTimeout(tick, 1000);
     return () => clearTimeout(timer);
-  }, []);
+  }, [phrases]);
 
   return (
     <span className="typewriter-text inline-block min-w-[200px] text-left">
