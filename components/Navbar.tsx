@@ -26,6 +26,7 @@ const DOC_ORDER = [
 
 export default function Navbar() {
   const [active, setActive] = useState("hero");
+  const [open, setOpen] = useState(false);
   const visibility = useRef<Record<string, boolean>>({});
 
   useEffect(() => {
@@ -80,7 +81,47 @@ export default function Navbar() {
             </a>
           ))}
         </div>
+
+        {/* Mobile hamburger */}
+        <button
+          type="button"
+          onClick={() => setOpen((v) => !v)}
+          aria-label={open ? "Close menu" : "Open menu"}
+          aria-expanded={open}
+          aria-controls="mobile-menu"
+          className="md:hidden text-primary p-2 rounded-full hover:bg-white/5 transition-all duration-300 interactive-el"
+        >
+          <span className="material-symbols-outlined">
+            {open ? "close" : "menu"}
+          </span>
+        </button>
       </div>
+
+      {/* Mobile menu */}
+      {open && (
+        <div
+          id="mobile-menu"
+          className="md:hidden border-t border-white/10 bg-surface/90 backdrop-blur-xl"
+        >
+          <div className="flex flex-col px-gutter py-4 gap-1 max-w-container-max mx-auto">
+            {LINKS.map((link) => (
+              <a
+                key={link.href}
+                href={link.href}
+                onClick={() => setOpen(false)}
+                aria-current={active === link.id ? "page" : undefined}
+                className={
+                  active === link.id
+                    ? "text-primary font-bold bg-white/5 px-4 py-3 rounded-lg font-label-bold text-label-bold"
+                    : "text-on-surface-variant font-medium hover:text-primary hover:bg-white/5 px-4 py-3 rounded-lg font-label-bold text-label-bold transition-colors"
+                }
+              >
+                {link.label}
+              </a>
+            ))}
+          </div>
+        </div>
+      )}
     </nav>
   );
 }
