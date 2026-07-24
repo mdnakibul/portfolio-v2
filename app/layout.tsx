@@ -54,6 +54,11 @@ export const metadata: Metadata = {
     description: DESCRIPTION,
     creator: "@HosenNakibul",
   },
+  // Paste ONLY the content token from Google Search Console's meta-tag method
+  // (the value inside content="..."). Leave "" to omit the tag.
+  verification: {
+    google: "MCLUVQ7uIkNDtgF6Wz_nP94LYHrEmqHDaN5Zl3JJCGc",
+  },
 };
 
 export default function RootLayout({
