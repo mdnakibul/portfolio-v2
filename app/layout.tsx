@@ -16,10 +16,43 @@ const jakarta = Plus_Jakarta_Sans({
   display: "swap",
 });
 
+const SITE_URL = "https://nakibul-dev.vercel.app";
+const DESCRIPTION =
+  "MERN Stack Developer with 6+ years building production web apps & SaaS. Available for full-time roles and freelance projects. Creator of VetVertex.";
+
 export const metadata: Metadata = {
-  title: "MERN Stack Developer Portfolio",
-  description:
-    "Full-stack MERN engineering focused on tactile interfaces, scalable architecture, and pixel-perfect execution.",
+  metadataBase: new URL(SITE_URL),
+  title: {
+    default: "Md Nakibul Hosen Nahid — MERN Stack Developer",
+    template: "%s · Nakibul.Dev",
+  },
+  description: DESCRIPTION,
+  keywords: [
+    "Md Nakibul Hosen Nahid",
+    "MERN Stack Developer",
+    "Full-Stack Developer",
+    "React Developer",
+    "Node.js Developer",
+    "Freelance Web Developer",
+    "SaaS Developer",
+    "VetVertex",
+  ],
+  authors: [{ name: "Md Nakibul Hosen Nahid", url: SITE_URL }],
+  creator: "Md Nakibul Hosen Nahid",
+  alternates: { canonical: SITE_URL },
+  openGraph: {
+    type: "website",
+    url: SITE_URL,
+    siteName: "Nakibul.Dev",
+    title: "Md Nakibul Hosen Nahid — MERN Stack Developer",
+    description: DESCRIPTION,
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Md Nakibul Hosen Nahid — MERN Stack Developer",
+    description: DESCRIPTION,
+    creator: "@HosenNakibul",
+  },
 };
 
 export default function RootLayout({
