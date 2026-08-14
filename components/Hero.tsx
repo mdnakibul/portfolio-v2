@@ -48,16 +48,17 @@ export default function Hero() {
             {PROFILE.name} · {PROFILE.role}
           </motion.p>
 
-          {/* Headline */}
+          {/* Headline — fluid size so the longer copy fits on all screens */}
           <motion.h1
             variants={revealUp}
-            className="font-display-xl text-display-xl text-on-surface mb-6"
+            className="font-display-xl font-extrabold tracking-tight leading-[1.1] text-on-surface mb-6 text-3xl sm:text-4xl md:text-5xl text-balance"
           >
             I build{" "}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary via-primary-container to-secondary">
               production-grade
             </span>{" "}
-            web apps &amp; SaaS.
+            web apps &amp; SaaS — with a veterinary degree behind the domain
+            expertise.
           </motion.h1>
 
           {/* Rotating specialties */}
